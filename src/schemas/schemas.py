@@ -7,27 +7,28 @@ class Usuario(BaseModel):
     id: Optional[str] = None
     nome: str
     telefone: str
-    minhas_vendas: List[Pedido]
-    meus_pedidos: List[Pedido]
-    meus_produtos: List[Produto]
+    # meus_produtos: List[Produto]
+    # minhas_vendas: List[Pedido]
+    # meus_pedidos: List[Pedido]
+
+    # Transformar automaticamente em Schema
+    class Config:
+        orm_mode = True
+
 
 class Produto(BaseModel):
     id: Optional[str] = None
     nome: str
-    usuario: Usuario
     detalhes: str
-    preco: float 
+    preco: float
     disponivel: bool = False
+
 
 class Pedido(BaseModel):
     id: Optional[str] = None
     usuario: Usuario
-    produto: Produto 
-    quantidade: int 
+    produto: Produto
+    quantidade: int
     entrega: bool = True
-    endereco: str 
+    endereco: str
     observacoes: Optional[str] = 'Sem observações'
-
-
-
-
